@@ -1,0 +1,12 @@
+#+title:     Damian Masterabeit overview
+#+author:    William East
+#+email:     williameast@live.com
+
+* Documents
+
+* Data
+** TODO build conditional variable to match OS or self assessment on internet usage
+** TODO tidy dataset
+how do deal with missing values?
+** WAIT build Gini analyser
+** TODO

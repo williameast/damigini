@@ -1,0 +1,65 @@
+Kürzel,Bedeutung,Abfrageform,Ausprägungen,Frage / Aufforderung,Notizen
+SD01,Geschlecht,Auswahl,"1 = weiblich
+2 = männlich
+3 = divers
+-9 = nicht beantwortet"," ""Welches Geschlecht haben Sie?""",
+SD02_01,Alter,Offene Eingabe (Ganze Zahl),," ""Wie alt sind Sie?""",
+SD03,Einkommen,Auswahl,"1 = <19.999€
+2 = 20.000€ bis 59.999€
+3 = 60.000€ bis 99.999€
+4 = 100.000€ bis 139.999€ 5 = >140.000€
+-9 = nicht beantwortet"," ""Wie hoch ist Ihr monatliches Brutto-Einkommen?""",
+SD04,Bildungsgrad,Auswahl,"1 = (noch) kein Abschluss
+2 = Hauptschulabschluss
+3 = Realschulabschluss (Mittlere Reife, Fachoberschulreife, o.Ä.).
+4 = Abitur (allgemeine Hochschulreife), fachgebundene Hochschulreife oder Fachhochschulreife 
+5 = (Fach-) Hochschulabschluss (Bachelor, Master, Magister, Diplom, Staatsexamen, Promotion) -9 = nicht beantwortet","""Was ist Ihr höchster Bildungsabschluss?""",
+GI01_SM,perceived gini coefficient: Summe,Offene Eingabe (Ganze Zahl),100!,,"Diese Variable ist lediglich aus Kontrollzwecken abgebildet und wird nicht abgefragt. Sie kontrolliert lediglich, ob die Summe der Antworten 100 ergibt."
+GI01_01,perceived gini coefficien (1. Fünftel),Offene Eingabe (Ganze Zahl),0-100 ,"1. Fünftel (die reichsten 16,5 Millionen):",
+GI01_02,perceived gini coefficient (2. Fünftel),Offene Eingabe (Ganze Zahl),0-100,"2. Fünftel: (die zweitreichsten 16,5 Millionen)",Die möglichen Ausprägungen hängen von der vorherigen Antwort ab
+GI01_03,perceived gini coefficient (3. Fünftel),Offene Eingabe (Ganze Zahl),0-100,"3. Fünftel (die mittleren 16,5 Millionen)",Die möglichen Ausprägungen hängen von den vorherigen Antworten ab
+GI01_04,perceived gini coefficient (4. Fünftel),Offene Eingabe (Ganze Zahl),0-100,"4. Fünftel: (die zweitärmsten 16,5 Millionen)",Die möglichen Ausprägungen hängen von den vorherigen Antworten ab
+GI01_05,perceived gini coefficient (5. Fünftel),Offene Eingabe (Ganze Zahl),0-100,"5. Fünftel (die ärmsten 16,5 Millionen)",Die möglichen Ausprägungen hängen von den vorherigen Antworten ab
+PR03_01,1. Einstellung zu Umverteilungspolitik,Skala (Zwischenwerte beschriftet),"1 = stimme voll zu
+2 = stimme eher zu
+3 = unentschieden
+4 = stimme eher nicht zu
+5 = stimme gar nicht zu
+-1 = kann ich nicht beurteilen -9 = nicht beantwortet"," ""Inwieweit stimmen Sie den folgenden Aussagen zu oder nicht zu?""",
+PR03_02,2. Einstellung zu Umverteilungspolitik,Skala (Zwischenwerte beschriftet),"1 = stimme voll zu
+2 = stimme eher zu
+3 = unentschieden
+4 = stimme eher nicht zu
+5 = stimme gar nicht zu
+-1 = kann ich nicht beurteilen -9 = nicht beantwortet","""Inwieweit stimmen Sie den folgenden Aussagen zu oder nicht zu?""",
+PR03_03,3. Einstellung zu Umverteilungspolitik,Skala (Zwischenwerte beschriftet),"1 = stimme voll zu
+2 = stimme eher zu
+3 = unentschieden
+4 = stimme eher nicht zu
+5 = stimme gar nicht zu
+-1 = kann ich nicht beurteilen -9 = nicht beantwortet"," ""Inwieweit stimmen Sie den folgenden Aussagen zu oder nicht zu?""",
+PR03_04,4. Einstellung zu Umverteilungspolitik,Skala (Zwischenwerte beschriftet),"1 = stimme voll zu
+2 = stimme eher zu
+3 = unentschieden
+4 = stimme eher nicht zu
+5 = stimme gar nicht zu
+-1 = kann ich nicht beurteilen -9 = nicht beantwortet","""Inwieweit stimmen Sie den folgenden Aussagen zu oder nicht zu?""",Invertieren!!! (Die Antwort muss invertiert in den Durchschnitt eingerechnet werden)
+ST04,Einleitung (subjektiv / OS),Auswahl,"1 = der Nutzungsstatistik der Apps (Facebook & Instagram) beantworten.
+2 = meiner persönlichen Einschätzung beantworten. 
+-9 = nicht beantwortet","Im Folgenden möchte ich erfahren, wieviel Zeit Sie auf sozialen Medien (Facebook & Instagram) verbringen. 
+
+Sie können dabei entscheiden, ob Sie die die Frage anhand der Nutzungsstatistik der Apps (empfohlen) oder anhand Ihrer persönlichen Einschätzung  beantworten möchten.",
+ST18_01,NEU-FACEBOOK_ohneOS,Texteingabe offen,,"Tragen Sie den ""Durchschnittlichen Wert in dieser Woche ein""",Abfrage über App
+ST19_01,NEU_INSTA_ohneOS,Texteingabe offen,,"Tragen Sie den ""Durchschnittlichen Wert in dieser Woche ein""",Abfrage über App
+ST15_01,(Subjektiv) Abfrage_Facebook,Texteingabe offen,,Geben Sie Ihre durchschnittliche Nutzung in Minuten pro Tag an.,
+ST16_01,(Subjektiv) Abfrage_Instagram,Texteingabe offen,,Geben Sie Ihre durchschnittliche Nutzung in Minuten pro Tag an.,
+ST11_01,Instagram (ja/nein Skala),Skala (Extrema beschriftet),"1 = nein
+2 = ja
+-9 = nicht beantwortet",Benutzten Sie Instagram?,
+ST12_01,Facebook (ja/nein Skala),Skala (Extrema beschriftet),"1 = nein
+2 = ja
+-9 = nicht beantwortet",Benutzten Sie Facebook?,
+FI02_CP,Zufallsgenerator,,,,
+FI02,Zufallsgenerator: Gezogener Code,,"1 = Kontrollgruppe
+2 = Treatment-Gruppe",,
+FI04,Einwilligung (Datenschutz),,,,Anfertigen!!!!
