@@ -26,7 +26,12 @@ colnames(dat_desc) <- c(
 ## to the line in recode key spitting the error. Thats becase missing values
 ## are unexpected and are not present in the mini data set.
 
-## recode_key_na <- c(`1` = 5L, `2` = 4L, `4` = 2L, `5` = 1L, `3` = 3L, `-9` = NA)
+## recode_key_na <- c(`1` = 5L,
+`2` = 4L,
+`4` = 2L,
+`5` = 1L,
+`3` = 3L,
+`-9` = NA)
 
 recode_key <- c(
   `1` = 5L, # The L makes sure the value remains it's type as integer.
@@ -79,7 +84,13 @@ dat <- dat[, !(str_detect(colnames(dat), "(?=.*[A-Z])"))]
 ## creating the gini coefficient
 
 dat <- mutate(dat,
-  gini_coef = (((2 * (1 * gini_5 + 2 * gini_4 + 3 * gini_3 + 4 * gini_2 + 5 * gini_1)) / 500) - (6 / 5)),
+  gini_coef = (((2 *
+    (1 * gini_5 +
+      2 * gini_4 +
+      3 * gini_3 +
+      4 * gini_2 +
+      5 * gini_1))
+  / 500) - (6 / 5)),
   redist_sum_non_na_answers = 4 - (is.na(attitude_income_difference) +
     is.na(attitude_gvt_responsible) +
     is.na(attitude_gvt_living_standard) +
@@ -89,14 +100,24 @@ dat <- mutate(dat,
     attitude_gvt_responsible,
     attitude_gvt_living_standard,
     attitude_gvt_social_services
-  )), # If at least 3/4 redistribution questions have been answered, take average. otherwise NA.
+  )), # If at least 3/4
+  # redistribution questions have been answered, take average. otherwise NA.
   pref_for_redistribution = ifelse(redist_sum_non_na_answers > 2,
     redistribution_attitude / redist_sum_non_na_answers,
     NA
   )
 )
 
-
+mutate(dat
+       insta_use = ifelse(social_media_usage_response_type == 1,
+                          os_assess_insta,
+                          self_assess_insta),
+       facebook_use = ifelse(social_media_usage_response_type == 1,
+                             os_assess_fb,
+                             self_assess_fb),
+       self_assess == ifelse(social_media_usage_response_type == 1,
+                             FALSE,
+                             TRUE))
 
 ## NOTE: This is an alternative function implementation to calculate the Gini
 ## coef for n cases
