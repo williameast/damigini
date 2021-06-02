@@ -27,11 +27,11 @@ colnames(dat_desc) <- c(
 ## are unexpected and are not present in the mini data set.
 
 ## recode_key_na <- c(`1` = 5L,
-`2` = 4L,
-`4` = 2L,
-`5` = 1L,
-`3` = 3L,
-`-9` = NA)
+## `2` = 4L,
+## `4` = 2L,
+## `5` = 1L,
+## `3` = 3L,
+## `-9` = NA)
 
 recode_key <- c(
   `1` = 5L, # The L makes sure the value remains it's type as integer.
@@ -95,12 +95,11 @@ dat <- mutate(dat,
     is.na(attitude_gvt_responsible) +
     is.na(attitude_gvt_living_standard) +
     is.na(attitude_gvt_social_services)),
-  redistribution_attitude = (sum(
-    attitude_income_difference,
-    attitude_gvt_responsible,
-    attitude_gvt_living_standard,
-    attitude_gvt_social_services
-  )), # If at least 3/4
+  redistribution_attitude = (
+    attitude_income_difference +
+      attitude_gvt_responsible +
+      attitude_gvt_living_standard +
+      attitude_gvt_social_services), # If at least 3/4
   # redistribution questions have been answered, take average. otherwise NA.
   pref_for_redistribution = ifelse(redist_sum_non_na_answers > 2,
     redistribution_attitude / redist_sum_non_na_answers,
@@ -108,16 +107,26 @@ dat <- mutate(dat,
   )
 )
 
-mutate(dat
-       insta_use = ifelse(social_media_usage_response_type == 1,
-                          os_assess_insta,
-                          self_assess_insta),
-       facebook_use = ifelse(social_media_usage_response_type == 1,
-                             os_assess_fb,
-                             self_assess_fb),
-       self_assess == ifelse(social_media_usage_response_type == 1,
-                             FALSE,
-                             TRUE))
+## make a variable for social media use, and a bool for if self or OS
+
+dat <- mutate(dat,
+  insta_use = ifelse(social_media_usage_response_type == 1,
+    os_assess_insta,
+    self_assess_insta
+  ),
+  facebook_use = ifelse(social_media_usage_response_type == 1,
+    os_assess_fb,
+    self_assess_fb
+  ),
+  os_assess = ifelse(os_assess == 1, 1, 0),
+  os_assess = ifelse(social_media_usage_response_type == -9,
+    NA,
+    social_media_usage_response_type
+  ),
+  treated = ifelse(treated == 2, 1, 0) # Bool for treated status
+)
+
+dat
 
 ## NOTE: This is an alternative function implementation to calculate the Gini
 ## coef for n cases
