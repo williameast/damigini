@@ -1,5 +1,8 @@
 pacman::p_load(magrittr, dplyr, stringr, readr)
-##setwd(rstudioapi::getActiveDocumentContext()$path)
+
+## setwd(rstudioapi::getActiveDocumentContext()$path)
+
+## Dieser Text solltest du nur sehen wenn alles geklappt hat
 
 ## Loading in the data
 
