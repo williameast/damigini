@@ -2,7 +2,8 @@ pacman::p_load(magrittr, dplyr, stringr, readr)
 
 ## setwd(rstudioapi::getActiveDocumentContext()$path)
 
-## Dieser Text solltest du nur sehen wenn alles geklappt hat
+## Dieser Text solltest du nur sehen wenn alles geklappt hat und ich will, 
+## das er bleibt :)
 
 ## Loading in the data
 
