@@ -14,3 +14,5 @@ CLOSED: [2021-06-02 Wed 15:07]
 *** [X] Gini coefficient
 CLOSED: [2021-06-02 Wed 15:08]
 *** [ ] Redistribution attitude
+*** [ ] Finish data clean
+**** [ ] Normalize variables
