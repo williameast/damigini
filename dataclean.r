@@ -1,4 +1,4 @@
-pacman::p_load(magrittr, dplyr, stringr, readr)
+pacman::p_load(magrittr, dplyr, stringr, readr, data.table, tidyverse)
 
 ## Loading in the data
 
@@ -33,13 +33,13 @@ colnames(dat_desc) <- c(
 ## `3` = 3L,
 ## `-9` = NA)
 
-recode_key <- c(
-  `1` = 5L, # The L makes sure the value remains it's type as integer.
-  `2` = 4L,
-  `4` = 2L,
-  `5` = 1L,
-  `3` = 3L
-)
+## recode_key <- c(
+##   `1` = 5L, # The L makes sure the value remains it's type as integer.
+##   `2` = 4L,
+##   `4` = 2L,
+##   `5` = 1L,
+##   `3` = 3L
+## )
 
 ## making variable names human readable
 
@@ -63,25 +63,68 @@ dat <- rename(dat,
   os_assess_insta = ST19_01,
   self_assess_fb = ST15_01,
   self_assess_insta = ST16_01,
-  insta_scale = ST11_01,
-  fb_scale = ST12_01,
+  insta_user = ST11_01,
+  fb_user = ST12_01,
   treated = FI02,
-  consent = FI04 # Still needs figuring out.
+  type_of_occupation = SD05,
+  lives_in_germany = SD06,
+  social_ladder = SD07, # Do we need to invert this?
+  max_tax_rate = PR04_01
 )
-## Recode lines
 
+## recoding the a variable, needed to be inverted.
 dat <- mutate(dat,
-  attitude_gvt_social_services = recode(
-    attitude_gvt_social_services,
-    recode_key
+  attitude_gvt_social_services = (6 - attitude_gvt_social_services)
+)
+
+dat$social_ladder <- (11 - dat$social_ladder)
+
+## Creating binary variable to capture self-assessed or app assessed SNS time.
+dat <- mutate(dat,
+  self_assess = ifelse(!is.na(self_assess_fb | self_assess_insta),
+    1,
+    0
+  ),
+  os_assess = ifelse(!is.na(os_assess_fb | os_assess_insta),
+    1,
+    0
   )
 )
 
+## Number of facebook users, insta users, inclusive and exclusive.
+
+dat <- mutate(dat,
+  fb_user = ifelse(fb_user == 2, 1, 0),
+  insta_user = ifelse(insta_user == 2, 1, 0),
+  sns_user = ifelse(fb_user^insta_user, 1, 0),
+  only_fb_user = ifelse((fb_user == 1)^(insta_user == 0), 1, 0),
+  only_insta_user = ifelse((insta_user == 1)^(fb_user == 0), 1, 0)
+)
+
+
+## Age range calculation
+dat$age_ordinal <- cut(dat$age, c(10, 19, 29, 39, 49, 59, 69, 79),
+  labels = c(
+    "10-19",
+    "20-29",
+    "30-39",
+    "40-49",
+    "50-59",
+    "60-69",
+    "70-79"
+  ),
+  include.lowest = TRUE
+)
+
+## ggplot(dat, aes(x = age_ordinal)) + geom_bar(stat = "count")
+
+
+
+
 ## Dropping unused columns. NOTE: Assumes that desired columns are lower case.
-
 dat <- dat[, !(str_detect(colnames(dat), "(?=.*[A-Z])"))]
-
-## creating the gini coefficient
+## creating the gini coefficient.
+## Redistribution is calculated as the average of all redistribution answers.
 
 dat <- mutate(dat,
   gini_coef = (((2 *
@@ -110,23 +153,29 @@ dat <- mutate(dat,
 ## make a variable for social media use, and a bool for if self or OS
 
 dat <- mutate(dat,
-  insta_use = ifelse(social_media_usage_response_type == 1,
-    os_assess_insta,
-    self_assess_insta
-  ),
-  facebook_use = ifelse(social_media_usage_response_type == 1,
-    os_assess_fb,
-    self_assess_fb
-  ),
-  os_assess = ifelse(os_assess == 1, 1, 0),
-  os_assess = ifelse(social_media_usage_response_type == -9,
-    NA,
-    social_media_usage_response_type
-  ),
+  ## insta_use = ifelse(social_media_usage_response_type == 1,
+  ##   os_assess_insta,
+  ##   self_assess_insta
+  ## ),
+  ## facebook_use = ifelse(social_media_usage_response_type == 1,
+  ##   os_assess_fb,
+  ##   self_assess_fb
+  ## ),
+  ## os_assess = ifelse(os_assess_fb | os_assess_insta == 1, 1, 0),
+  ## os_assess = ifelse(social_media_usage_response_type == -9,
+  ##   NA,
+  ##   social_media_usage_response_type
+  ## ),
   treated = ifelse(treated == 2, 1, 0) # Bool for treated status
 )
 
-dat
+dat <- mutate(dat,
+  gender = ifelse(gender == 3, "Non-binary",
+    (ifelse(gender == 2, "Male", "Female"))
+  )
+)
+
+
 
 ## NOTE: This is an alternative function implementation to calculate the Gini
 ## coef for n cases
@@ -139,3 +188,17 @@ dat
 ##   Gini = (2 * upper) / (dim(x)[1] * lower)
 ##   return(Gini)
 ## }
+
+## Recoding max tax rate
+
+dat$max_tax_rate <- (ifelse(dat$max_tax_rate == -9, NA, dat$max_tax_rate - 1))
+
+
+## Dami kann das machen
+## recodekey_income = c(`1` = "<19999",
+##                      `2` = "20000-29999",
+##                      ``)
+
+## Dami macht auch bildungsgrad
+
+saveRDS(dat, "Data_clean.rds")
