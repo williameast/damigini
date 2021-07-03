@@ -10,9 +10,13 @@ how do deal with missing values?
 ** DONE build Gini analyser
 CLOSED: [2021-06-02 Wed 15:07]
 ** TODO Standardize variables
-*** [ ] social media response
+*** [X] social media response
+CLOSED: [2021-06-03 Thu 17:11]
 *** [X] Gini coefficient
 CLOSED: [2021-06-02 Wed 15:08]
 *** [ ] Redistribution attitude
+We are thinking about not having a single indicator for redistribution, but
+instead using the 4 distinct variables independently.
 *** [ ] Finish data clean
-**** [ ] Normalize variables
+**** [ ] Normalize variables (pref_for_redistribution)
+**** [ ]

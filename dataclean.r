@@ -1,10 +1,5 @@
 pacman::p_load(magrittr, dplyr, stringr, readr)
 
-## setwd(rstudioapi::getActiveDocumentContext()$path)
-
-## Dieser Text solltest du nur sehen wenn alles geklappt hat und ich will, 
-## das er bleibt :)
-
 ## Loading in the data
 
 dat_desc <- readr::read_csv("Willi_Variablenübersicht.csv")
@@ -112,7 +107,6 @@ dat <- mutate(dat,
   )
 )
 
-## Hallo dami
 ## make a variable for social media use, and a bool for if self or OS
 
 dat <- mutate(dat,
