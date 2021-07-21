@@ -48,17 +48,17 @@ dat <- rename(dat,
   age = SD02_01,
   income = SD03,
   education = SD04,
-  gini_sum = GI01_SM, 
+  gini_sum = GI01_SM,
   gini_1 = GI01_01,
   gini_2 = GI01_02,
   gini_3 = GI01_03,
   gini_4 = GI01_04,
   gini_5 = GI01_05,
-  attitude_income_difference = PR03_01, #a (Bewertung der Vermögensunterschiede)
-  attitude_gvt_responsible = PR03_02, #b (Support for Redistribution)
-  attitude_gvt_living_standard = PR03_03, #c
-  attitude_gvt_social_services = PR03_04, #d
-  social_media_usage_response_type = ST04, 
+  attitude_income_difference = PR03_01, # a (Bewertung der Vermögensunterschiede)
+  attitude_gvt_responsible = PR03_02, # b (Support for Redistribution)
+  attitude_gvt_living_standard = PR03_03, # c
+  attitude_gvt_social_services = PR03_04, # d
+  social_media_usage_response_type = ST04,
   os_assess_fb = ST18_01,
   os_assess_insta = ST19_01,
   self_assess_fb = ST15_01,
@@ -201,49 +201,52 @@ dat$max_tax_rate <- (ifelse(dat$max_tax_rate == -9, NA, dat$max_tax_rate - 1))
 
 ## Dami macht auch bildungsgrad
 
+
 saveRDS(dat, "Data_clean.rds")
 
-#TO DO
+# TO DO
 
-#ANOVAS
-#1 gi  Variable: gini_coef???
-#2 sp (a) Bewertung Vermögensun  Variable: attitude_income_difference = PR03_01
-#3 sp  (b) Der Staat soll verteilen  Variable: attitude_gvt_responsible = PR03_02
-#4 sp (combined) alle 5 
-#5  Steuer Frage  Variable: max_tax_rate = PR04_01
-#6 SSS  Variable: social_ladder = SD07
+# ANOVAS
+# 1 gi  Variable: gini_coef???
+# 2 sp (a) Bewertung Vermögensun  Variable: attitude_income_difference = PR03_01
+# 3 sp  (b) Der Staat soll verteilen  Variable: attitude_gvt_responsible = PR03_02
+# 4 sp (combined) alle 5
+# 5  Steuer Frage  Variable: max_tax_rate = PR04_01
+# 6 SSS  Variable: social_ladder = SD07
 
-#!!!! additional  ANOVA Statistics!!!!!
-#Anova Tables
-#http://users.minet.uni-jena.de/~jschum/biostat/ANOVA.pdf (gute Quelle mit allen Test Uni-Jena)
-#http://www.sthda.com/english/wiki/one-way-anova-test-in-r
-#Boxplots  
-#http://www.sthda.com/english/wiki/one-way-anova-test-in-r
-#Eta-Quadrat
-#https://www.statology.org/eta-squared-in-r/
+# !!!! additional  ANOVA Statistics!!!!!
+# Anova Tables
+# http://users.minet.uni-jena.de/~jschum/biostat/ANOVA.pdf (gute Quelle mit allen Test Uni-Jena)
+# http://www.sthda.com/english/wiki/one-way-anova-test-in-r
+# Boxplots
+# http://www.sthda.com/english/wiki/one-way-anova-test-in-r
+# Eta-Quadrat
+# https://www.statology.org/eta-squared-in-r/
 
-#!!!!Welche Test?
-#http://users.minet.uni-jena.de/~jschum/biostat/ANOVA.pdf (Uni Jena schlägt eine grafische Überprüfung vor. Willi zeigen!!!)
-#Normalverteilung?
+# !!!!Welche Test?
+# http://users.minet.uni-jena.de/~jschum/biostat/ANOVA.pdf (Uni Jena schlägt eine grafische Überprüfung vor. Willi zeigen!!!)
+# Normalverteilung?
 
 
-#INFOS
-#!!!!Alter!!!! age = SD02_01, 
-#!!!!Geschlecht!!!! gender = SD01,
-#!!!!Bildungsgrad!!!! education = SD04,
-#!!!!Einkommen income = SD03,
+# INFOS
+# !!!!Alter!!!! age = SD02_01,
+# !!!!Geschlecht!!!! gender = SD01,
+# !!!!Bildungsgrad!!!! education = SD04,
+# !!!!Einkommen income = SD03,
+
+
 
 ## Number of facebook users, insta users, inclusive and exclusive.
 
-#!!!! Wie viel Prozent von denen, die SNS time beantwortet haben, haben objektiv geantwortet.!!!!
+# !!!! Wie viel Prozent von denen, die SNS time beantwortet haben, haben objektiv geantwortet.!!!!
 
-#!!!!Durchschnittliche Nutzungsdauer [overall, objektiv, subjektiv] !!!!!
+# !!!!Durchschnittliche Nutzungsdauer [overall, objektiv, subjektiv] !!!!!
 
-#!!!!ZEILE 172 sieht nicht gut aus GENDER, so kriege ich doch nur 2 Geschlechter Diskriminierungsalarm!!!
+# !!!!ZEILE 172 sieht nicht gut aus GENDER, so kriege ich doch nur 2 Geschlechter Diskriminierungsalarm!!!
 
-#!!!! Wieviele gewertete Datensetze N=???? !!!! (müsste ANOVA anzeigen)
-#!!!! Wie viele in Treatment/Control Group ????? !!!!müsste ANOVA anzeigen)
+# !!!! Wieviele gewertete Datensetze N=???? !!!! (müsste ANOVA anzeigen)
+# !!!! Wie viele in Treatment/Control Group ????? !!!!müsste ANOVA anzeigen)
 
-#!!!!Daten-/Grafik-Transfer zu Latex!!!!!
-#https://cran.r-project.org/web/packages/texreg/vignettes/texreg.pdf
-#https://www.r-bloggers.com/2011/04/export-a-table-created-by-r-to-a-tex-file/
+# !!!!Daten-/Grafik-Transfer zu Latex!!!!!
+# https://cran.r-project.org/web/packages/texreg/vignettes/texreg.pdf
+# https://www.r-bloggers.com/2011/04/export-a-table-created-by-r-to-a-tex-file/
