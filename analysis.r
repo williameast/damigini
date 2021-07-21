@@ -11,7 +11,12 @@ Summary_Stats <- select(dat, age, gender, education, income) %>% summary()
 
 print(xtable(Summary_Stats, type = "latex"))
 
-attitude_income_difference.aov <- summary(aov(attitude_income_difference ~ treated, data = dat))
+attitude_income_difference.aov <- summary(aov(attitude_income_difference ~ treated,
+                                              data = dat,
+                                              projections = FALSE,
+                                              na.omit = TRUE))
 
 
 print(xtable(attitude_income_difference.aov, type = "latex"))
+
+
